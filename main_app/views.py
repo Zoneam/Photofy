@@ -47,14 +47,17 @@ def add_photo(request, photographer_id):
     return HttpResponseRedirect(f'/portfolio/{photographer_id}')
 
 
-
+# Delete photo from database and S3 bucket
 @login_required
 def delete_photo(request,photographer_id,photo_id):
-    print('DELETING!!!!!',photo_id)
-    Photo(id=photo_id).delete()
+    s3 = boto3.client('s3')
+    photo = Photo.objects.get(id=photo_id)
+    try:
+        s3.delete_object(Bucket = os.environ['S3_BUCKET'], Key = photo.name)
+        Photo(id=photo_id).delete()
+    except:
+        print('An error occurred deleting file from S3')
     return HttpResponseRedirect(f'/portfolio/{photographer_id}')
-
-
 
 
 def signup(request):
