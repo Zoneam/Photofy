@@ -37,6 +37,7 @@ urlpatterns = [
     # Portfolio routes
     path('portfolio/<int:profile_id>', views.portfolio, name='portfolio'),
     path('portfolio/<int:photographer_id>/add_photo/', views.add_photo, name='add_photo'),
+    path('portfolio/<int:photographer_id>/<int:photo_id>/delete_photo/', views.delete_photo, name='delete_photo'),
     # Photographers route
     path('photographers/', views.photographers, name='photographers'),
     # Transactions routes

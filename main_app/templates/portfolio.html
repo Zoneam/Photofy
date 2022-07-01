@@ -32,7 +32,12 @@
 {% for photo in photos %}
       <div class="col-md-4">
         <div class="thumbnail pop">
+          
+        <a href="{% url 'delete_photo' user.id photo.id %}">
+
+        <div>
           <img src="{{ photo.url }}" alt="Lights" class="initial-class" style="width:100%; margin:15px; border-radius:10px" >
+        </div>
       </div>
       </div>
 
