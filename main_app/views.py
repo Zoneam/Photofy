@@ -35,8 +35,8 @@ def add_photo(request, photographer_id):
         s3 = boto3.client('s3')
         # need a unique "key" for s3 (filename)
         key = uuid.uuid4().hex[:6] + \
-            photo_file.name[photo_file.name.rfind('.'):]
-        try:
+            photo_file.name[photo_file.name.rfind('.'):] 
+        try: 
             bucket = os.environ['S3_BUCKET']
             s3.upload_fileobj(photo_file, bucket, key)
             url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
