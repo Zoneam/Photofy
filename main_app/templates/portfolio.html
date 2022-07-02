@@ -31,9 +31,12 @@
 <div class="row">
 {% for photo in photos %}
       <div class="col-md-4">
-        <div class="thumbnail pop">
+        <div class="thumbnail">
+          {% if user.is_authenticated and user.id == profile_id %}
         <a href="{% url 'delete_photo' user.id photo.id %}" style="text-decoration: none;"><div class="delete-image" >X</div></a>
-        <div>
+        {% csrf_token %}
+        {% endif %}
+        <div class="pop">
           <img src="{{ photo.url }}" alt="Lights" class="initial-class" style="width:100%; margin:15px; border-radius:10px" >
         </div>
       </div>
