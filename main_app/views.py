@@ -4,6 +4,7 @@ import boto3
 from datetime import date
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
+from django.dispatch import receiver
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from .models import Equipment, Booking, Photo, Transaction, Profile, User
@@ -44,6 +45,20 @@ def add_photo(request, photographer_id):
         except:
             print('An error occurred uploading file to S3')
     return HttpResponseRedirect(f'/portfolio/{photographer_id}')
+
+
+# Delete photo from database and S3 bucket
+@login_required
+def delete_photo(request,photographer_id,photo_id):
+    s3 = boto3.client('s3')
+    photo = Photo.objects.get(id=photo_id)
+    try:
+        s3.delete_object(Bucket = os.environ['S3_BUCKET'], Key = photo.name)
+        Photo(id=photo_id).delete()
+    except:
+        print('An error occurred deleting file from S3')
+    return HttpResponseRedirect(f'/portfolio/{photographer_id}')
+
 
 def signup(request):
     """
@@ -151,7 +166,6 @@ def equipment(request):
     return render(request, 'equipment.html',  {'equipments': gear_user_doesnt_have, 'assoc_equipments': assoc_equipments})
 
 
-
 def portfolio(request, profile_id):
     """
     Displays all photos belonging to photographer
@@ -235,7 +249,6 @@ def transactions(request):
     bookings_list = list(bookings)
     transaction = Transaction.objects.filter(booking__in=bookings_list)
     transaction_total = transaction.aggregate(Sum('amount')).get('amount__sum',0.00) if transaction else 0
-    print(transaction_total)
     return render(request, 'transactions.html', {'transaction': transaction, 'transaction_total': transaction_total})
 
 
