@@ -303,5 +303,23 @@ main {
 }
 
 .thumbnail {
+  display:flex !important;
   cursor: pointer;
+  flex-direction: column;
+  align-items: flex-end
+}
+
+.delete-image{
+ width:26px;
+ background-color: #c8a47e;
+  position: relative;
+  text-align: center;
+  color:#cc0000;
+  top: 35px;
+  right: -24px;
+  border-radius: 71%;
+  padding: 0;
+  -webkit-box-shadow: 0px 0px 8px 3px #ffbb0f; 
+  box-shadow: 0px 0px 4px 3px #302a2a81;
+
 }
