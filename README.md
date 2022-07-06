@@ -19,7 +19,7 @@
   <p align="center">
     <h3>An application for photographers and customers.</h3>
     <br />
-    <h1><a href="https://photofyproject.herokuapp.com/">View Live App »</a></h1>
+    <h1><a href="https://photofy-project.herokuapp.com/">View Live App »</a></h1>
     <br />
     <br />
     <a href="https://github.com/users/lcrosariol/projects/2">Github Project Board</a>
