@@ -94,7 +94,7 @@ WSGI_APPLICATION = 'photify.wsgi.application'
 
 
 DATABASES = {
-    'default': dj_database_url.config(default='postgres://myappuser:wR29o6IViUxMNxPmIxNRTFnQv6jbKjYO@dpg-ceuh0882i3ml6908qab0-a.oregon-postgres.render.com/photofy', conn_max_age=600    )}
+    'default': dj_database_url.config(default=os.environ['SQL_DATABASE'], conn_max_age=600    )}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
