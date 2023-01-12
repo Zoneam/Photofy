@@ -81,16 +81,20 @@ WSGI_APPLICATION = 'photify.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'photofy',
+#         'USER': 'myappuser',
+#         'PASSWORD' : 'mypass',
+#         'HOST': 'localhost',
+#         'PORT' : 5432
+#     }
+# }
+
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'photofy',
-        'USER': 'myappuser',
-        'PASSWORD' : 'mypass',
-        'HOST': 'localhost',
-        'PORT' : 5432
-    }
-}
+    'default': dj_database_url.config(default=os.environ['SQL_DATABASE'], conn_max_age=600)}
 
 
 # DATABASES = {
