@@ -81,20 +81,20 @@ WSGI_APPLICATION = 'photify.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'photofy',
-#         'USER': 'myappuser',
-#         'PASSWORD' : os.environ['SQL_PASS'],
-#         'HOST': 'localhost',
-#         'PORT' : 5432
-#     }
-# }
-
-
 DATABASES = {
-    'default': dj_database_url.config(default=os.environ['SQL_DATABASE'], conn_max_age=600    )}
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'photofy',
+        'USER': 'myappuser',
+        'PASSWORD' : 'mypass',
+        'HOST': 'localhost',
+        'PORT' : 5432
+    }
+}
+
+
+# DATABASES = {
+#     'default': dj_database_url.config(default=os.environ['SQL_DATABASE'], conn_max_age=600)}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
