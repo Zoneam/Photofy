@@ -1,1 +1,1 @@
-web: gunicorn photify.wsgi
+web: gunicorn photofy.wsgi
